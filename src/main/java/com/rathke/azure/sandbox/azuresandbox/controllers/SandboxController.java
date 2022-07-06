@@ -1,12 +1,14 @@
 package com.rathke.azure.sandbox.azuresandbox.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
-@RestController
+@Controller
 public class SandboxController {
-    @RequestMapping("/")
-    String hello() {
-        return "Hello World!";
+    @GetMapping("/")
+    String main(Model model) {
+        // this is the file name of the view / template
+        return "index";
     }
 }
