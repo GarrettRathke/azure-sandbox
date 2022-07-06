@@ -11,7 +11,7 @@
 	<groupId>com.rathke.azure.sandbox</groupId>
 	<artifactId>azure-sandbox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>azure-sandbox</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -21,6 +21,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,6 +61,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				  <configuration>
+					<resourceGroup>leaderboard-resources</resourceGroup>
+					<appName>rathke-leaderboard</appName>
+					<deployment>
+					  <resources>
+						<resource>
+						  <directory>${project.basedir}/target</directory>
+						  <includes>
+							<include>*.jar</include>
+						  </includes>
+						</resource>
+					  </resources>
+					</deployment>
+				  </configuration>
+			  </plugin>
 		</plugins>
 	</build>
 
